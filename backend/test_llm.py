@@ -1,7 +1,7 @@
 import google.generativeai as genai
 
 # 🔐 Setup API Key
-genai.configure(api_key="api key")
+genai.configure(api_key="AIzaSyAgkKr9_Sp4u35fb1v03v2WVj66XS3Tr28")
 
 # 🧠 Smart doctor-like system prompt
 system_prompt = """

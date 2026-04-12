@@ -7,8 +7,13 @@ from retrieval.search_engine import load_models, search
 
 app = FastAPI()
 
-# 🔐 Gemini setup (replace with your new API key later)
-genai.configure(api_key="api key")
+# 🔐 Gemini setup from dotenv import load_dotenv
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # 🧠 Chat memory (session-based)
 chat_sessions = {}
@@ -43,7 +48,9 @@ app.add_middleware(
 )
 
 # load SBERT model once
-load_models()
+@app.on_event("startup")
+def startup_event():
+    load_models()
 
 class Query(BaseModel):
     query: str
